@@ -3,63 +3,94 @@ import * as m from "mithril";
 let iteration: number = 0;
 let lastStamp: number = 0;
 function getIteratedDelay(delay: number = 0): number {
-    if (delay === 0) return 0;
+    if (delay === 0) {
+        return 0;
+    }
 
     iteration++;
-    if (lastStamp + delay < Date.now()) iteration = 0;
+    if (lastStamp + 100 < Date.now()) {
+        iteration = 0;
+    }
     lastStamp = Date.now();
     return iteration * delay;
 }
 
-export default class Animation {
+type VChildren = Array<m.Vnode<any, any> | m.VnodeDOM<any, any>>;
+
+export default abstract class Animation {
+    private children: VChildren = [];
+    private implementedView: (v: m.CVnode<any>) => any;
     protected iterateDelay: number = 100;
-    private beforeClass: string = "before";
+
+    constructor() {
+        this.implementedView = this.view;
+        this.view = this.animatedView;
+    }
 
     public oncreate(v: m.CVnodeDOM<any>) {
-        if (Array.isArray(v.children)) v.children.forEach((child: m.VnodeDOM<any, any>) => this.doBefore(child));
-        else this.doBefore(v);
+        this.children.forEach((vChild: m.VnodeDOM<any, any>) => {
+            const delay: number = getIteratedDelay(this.iterateDelay);
+            setTimeout(() => vChild.dom.classList.remove("before"), delay || requestAnimationFrame);
+        });
     }
 
     public onbeforeremove(v: m.CVnodeDOM<any>) {
-        const promises: Promise<any>[] = [];
-        if (Array.isArray(v.children)) v.children.forEach((child: m.VnodeDOM<any, any>) => promises.push(this.doAfter(child)));
-        else promises.push(this.doAfter(v));
+        const promises: Array<Promise<any>> = [];
+        this.children.forEach((vChild: m.VnodeDOM<any, any>) => {
+            vChild.dom.classList.add("after");
+            const delay: number = getIteratedDelay(this.iterateDelay) + getTransitionDuration(vChild.dom);
+            promises.push(new Promise((resolve) => setTimeout(resolve, delay)));
+        });
         return Promise.all(promises);
     }
 
-    public oninit(v: m.CVnode<any>) {
-        if (v.attrs.iterateDelay !== undefined) this.iterateDelay = parseInt(v.attrs.iterateDelay, 10);
-        if (v.attrs.class !== undefined) this.beforeClass += " " + v.attrs.class;
-        if (Array.isArray(v.children)) v.children.forEach((child: m.Vnode<any, any>) =>
-            child.attrs = this.injectClasses(child.attrs));
-
-    }
-
-    public view(v: m.CVnode<any>) {
-        if (!Array.isArray(v.children)) return <div class={this.beforeClass}>{v.children}</div>;
-
-        return v.children;
-    }
-
-    private injectClasses(attrs: any = {}): {} {
-        if (attrs.class === undefined) attrs.class = this.beforeClass;
-        else attrs.class += " " + this.beforeClass;
-
-        return attrs;
-    }
-
-    private doBefore(v: m.VnodeDOM<any, any>): void {
-        if (v.dom) setTimeout(() => v.dom.classList.remove("before"), getIteratedDelay(this.iterateDelay) || 20);
-
-    }
-
-    private doAfter(v: m.VnodeDOM<any, any>): Promise<any> {
-        if (v.dom) {
-            v.dom.classList.add("after");
-            const transitionDuration: number = getTransitionDuration(v.dom) + getIteratedDelay(this.iterateDelay);
-            return new Promise((resolve) => setTimeout(resolve, transitionDuration));
+    private animatedView(v: m.CVnode<any>) {
+        const children: any = this.implementedView(v);
+        if (Array.isArray(children)) {
+            children.forEach((vChild: m.Vnode<any, any>) => this.injectClasses(vChild, v.attrs.className));
+            this.children = children;
+        } else {
+            this.injectClasses(children, v.attrs.className);
+            this.children = [children];
         }
-        return Promise.resolve();
+        return children;
+    }
+
+    protected abstract view(v: m.CVnode<any>);
+
+    private injectClasses(v: m.Vnode<any, any>, className: string = "") {
+        if (typeof v.attrs !== "object") {
+            v.attrs = {};
+        }
+
+        if (v.attrs.className === undefined) {
+            v.attrs.className = className + " before";
+        } else {
+            v.attrs.className += " " + className + " before";
+        }
+        console.log(v.attrs.className, className); 
+    }
+}
+
+interface IAnimationContainerAttrs {
+    className: string;
+    iterateDelay?: number;
+    element?: string;
+}
+
+export class AnimationContainer extends Animation implements m.ClassComponent<IAnimationContainerAttrs> {
+    public oninit(v: m.CVnode<IAnimationContainerAttrs>) {
+        if (v.attrs.iterateDelay !== undefined) {
+            this.iterateDelay = v.attrs.iterateDelay;
+        }
+    }
+
+    public view(v: m.CVnode<IAnimationContainerAttrs>) {
+        if (v.attrs.element === undefined) {
+            return v.children;
+        }
+        const Key: string = v.attrs.element;
+        return <Key className={v.attrs.className}>{v.children}</Key>;
     }
 }
 

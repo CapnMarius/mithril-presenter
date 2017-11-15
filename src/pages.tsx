@@ -1,22 +1,22 @@
 import * as m from "mithril";
 import Page from "./components/Page";
-import A from "./components/Animation";
+import {AnimationContainer as A} from "./components/Animation";
 const imgTS = require("./assets/ts.png");
 const imgJS = require("./assets/js.png");
 
 interface IPage {
     title: string;
     sub: string;
-    class: string;
+    className: string;
     content: any;
 }
 
 const pages: IPage[] = [{
     title: "Workshop",
-    sub: "Modern Front-end Webdevelopment", class: "main",
+    sub: "Modern Front-end Webdevelopment", className: "main",
     content:
         <div>
-            <A class="list">
+            <A className="list">
                 <h4>TypeScript</h4>
                 <h4>WebPack</h4>
                 <h4>Sass</h4>
@@ -27,11 +27,11 @@ const pages: IPage[] = [{
 },
 {
     title: "TypeScript",
-    sub: "State of the art JavaScript", class: "typescript",
+    sub: "State of the art JavaScript", className: "typescript",
     content:
         <div>
             <ul>
-                <A class="list">
+                <A className="list">
                     <li>Stricte superset van JavaScript</li>
                     <li>Open Source</li>
                     <li>Ontwikkeld door Microsoft</li>
@@ -43,7 +43,7 @@ const pages: IPage[] = [{
                 </A>
             </ul>
 
-            <A class="list">
+            <A className="list">
                 <div style={{ textAlign: "center" }}>
                     <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
                         <span style={{ position: "absolute", bottom: "-30px"}}>TypeScript</span>
@@ -58,18 +58,18 @@ const pages: IPage[] = [{
         </div>
 }, {
     title: "Yarn",
-    sub: "Dependency Manager voor npm", class: "yarn",
+    sub: "Dependency Manager voor npm", className: "yarn",
     content:
         <div>
             <ul>
-                <A class="list">
+                <A className="list">
                     <li>Parallel downloaden</li>
                     <li>Locale caching</li>
                     <li>Betrouwbaar</li>
                 </A>
             </ul>
 
-            <A class="list">
+            <A className="list">
                 <h4>Commands</h4>
                 <pre>yarn install</pre>
                 <pre>yarn upgrade</pre>
@@ -79,10 +79,10 @@ const pages: IPage[] = [{
         </div>
 }, {
     title: "WebPack",
-    sub: "Code bundler & task-runner", class: "webpack",
+    sub: "Code bundler & task-runner", className: "webpack",
     content:
         <ul>
-            <A class="list">
+            <A className="list">
                 <li>Één JavaScript bestand</li>
                 <li>Module system</li>
                 <li>Loaders en Plugins</li>
@@ -91,10 +91,10 @@ const pages: IPage[] = [{
         </ul>
 }, {
     title: "Sass",
-    sub: "Syntactically Awesome Style Sheets", class: "sass",
+    sub: "Syntactically Awesome Style Sheets", className: "sass",
     content:
         <ul>
-            <A class="list">
+            <A className="list">
                 <li>Nesting</li>
                 <li>Imports</li>
                 <li>Variabelen</li>
@@ -105,10 +105,10 @@ const pages: IPage[] = [{
         </ul>
 }, {
     title: "Mithril",
-    sub: "Moderne Virtual DOM library", class: "mithril",
+    sub: "Moderne Virtual DOM library", className: "mithril",
     content:
         <ul>
-            <A class="list">
+            <A className="list">
                 <li>Component based</li>
                 <li>Interactive / Reactive</li>
                 <li>State management</li>
@@ -119,9 +119,9 @@ const pages: IPage[] = [{
         </ul>
 }, {
     title: "Mithril",
-    sub: "Lifecycle methods", class: "mithril",
+    sub: "Lifecycle methods", className: "mithril",
     content:
-        <A class="list">
+        <A className="list">
             <h4>1. oninit(VNode)</h4>
             <h4>2. view(VNode)</h4>
             <h4>3. oncreate(VNodeDOM)</h4>
@@ -138,11 +138,11 @@ export default pages;
 
 export const getPage = (page: number) => {
     const p: IPage = pages[page];
-    return <A class="page" key={page}>
+    return <A className="page" key={page}>
         <Page
             title={p.title}
             sub={p.sub}
-            class={p.class}>
+            className={p.className}>
             {p.content}
         </Page>
     </A>;

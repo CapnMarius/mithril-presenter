@@ -7,7 +7,7 @@ export default class Presentor implements m.ClassComponent<{}> {
     private prevKeyStamp: number;
 
     public view(v: m.CVnode<{}>) {
-        return <div class="component-presentor">{getPage(this.page)}</div>
+        return <div className="component-presentor">{getPage(this.page)}</div>
     }
 
     public oncreate(v: m.CVnodeDOM<{}>) {
