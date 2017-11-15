@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    background-color: black;
+}
+
+.component-page {
+    font-family: sans-serif;
+    font-size: 2rem;
+    >.header {
+        width: calc(100% - 80px);
+        padding: 40px;
+        background-color: rgba(255, 255, 255, .5);
+        .title {
+            display: block;
+            margin: 0 0 10px 0;
+            border-bottom: 4px solid black;
+        }
+        .sub {
+            margin: 0;
+            font-style: italic;
+        }
+    }
+    >.content {
+        width: calc(100% - 80px);
+        padding: 0 40px;
+    }
+    h4 {
+        margin-bottom: 0;
+    }
+    pre {
+        margin: 0 1em;
+    }
+}
+
+li, p, h4, h5 {
+    &:hover {
+        box-shadow: 0 3px 0 black;
+    }
+}
+
+/*Animations*/
+.page {
+    transition: transform 1s ease;
+    &.before {
+        transform: translate3d(100vw, 0, 0);
+    }
+    &.after {
+        transform: translate3d(-100vw, 0, 0);
+    }
+}
+
+.list {
+    transition: transform .5s .5s ease, opacity .5s .5s;
+    &.before {
+        transform: translate3d(100px, 0, 0);
+        opacity: 0;
+    }
+    &.after {
+        transform: translate3d(100px, 0, 0);
+        opacity: 0;
+    }
+}
+
+/* Pages */
+.main {
+    background-color: #f1861d;
+}
+
+.mithril {
+    background-color: #8bc34a;
+}
+
+.typescript {
+    background-color: #007acc;
+}
+
+.yarn {
+    background-color: #2188b6;
+}
+
+.webpack {
+    background-color: #55a7dd;
+}
+
+.sass {
+    background-color: #cf649a;
+}
