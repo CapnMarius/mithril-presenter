@@ -1,6 +1,8 @@
 import * as m from "mithril";
 import Page from "./components/Page";
 import A from "./components/Animation";
+const imgTS = require("./assets/ts.png");
+const imgJS = require("./assets/js.png");
 
 interface IPage {
     title: string;
@@ -45,11 +47,11 @@ const pages: IPage[] = [{
                 <div style={{ textAlign: "center" }}>
                     <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
                         <span style={{ position: "absolute", bottom: "-30px"}}>TypeScript</span>
-                        <img src="/assets/ts.png" />
+                        <img src={imgTS} />
                     </div>
                     <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
                         <span style={{ position: "absolute", bottom: "-30px" }}>JavaScript</span>
-                        <img src="/assets/js.png" />
+                        <img src={imgJS} />
                     </div>
                 </div>
             </A>
