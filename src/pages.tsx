@@ -18,6 +18,7 @@ const pages: IPage[] = [{
         <div>
             <A className="list">
                 <h4>TypeScript</h4>
+                <h4>TSLint</h4>
                 <h4>WebPack</h4>
                 <h4>Sass</h4>
                 <h4>Mithril</h4>
@@ -56,9 +57,39 @@ const pages: IPage[] = [{
                 </div>
             </A>
         </div>
+},
+{
+    title: "TSLint",
+    sub: "Static Analysis for TypeScript", className: "tslint",
+    content:
+        <div>
+            <ul>
+                <A className="list">
+                    <li>Readability</li>
+                    <li>Maintainability</li>
+                    <li>Syntactic correctness</li>
+                    <li>Bad practice warnings</li>
+                    <li>Less merge-conflicts</li>
+                    <li>IDE support</li>
+                </A>
+            </ul>
+
+            <A className="list">
+                <div style={{ textAlign: "center" }}>
+                    <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
+                        <span style={{ position: "absolute", bottom: "-30px"}}>TypeScript</span>
+                        <img src={imgTS} />
+                    </div>
+                    <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
+                        <span style={{ position: "absolute", bottom: "-30px" }}>JavaScript</span>
+                        <img src={imgJS} />
+                    </div>
+                </div>
+            </A>
+        </div>
 }, {
     title: "Yarn",
-    sub: "Dependency Manager voor npm", className: "yarn",
+    sub: "Dependency Manager", className: "yarn",
     content:
         <div>
             <ul>
@@ -105,7 +136,7 @@ const pages: IPage[] = [{
         </ul>
 }, {
     title: "Mithril",
-    sub: "Moderne Virtual DOM library", className: "mithril",
+    sub: "Modern Virtual DOM library", className: "mithril",
     content:
         <ul>
             <A className="list">
