@@ -1,11 +1,11 @@
 body {
     margin: 0;
     background-color: black;
+    font-family: sans-serif;
+    font-size: 1.8rem;
 }
 
 .component-page {
-    font-family: sans-serif;
-    font-size: 2rem;
     >.header {
         width: calc(100% - 80px);
         padding: 40px;
@@ -86,6 +86,15 @@ li, p, h4, h5 {
     background-color: #cf649a;
 }
 
+.ospec {
+    background-color: #cb3837;
+}
+
 .tslint {
     background-color: #15767a;
+}
+
+.mama {
+    background-color: black;
+    color: white;
 }

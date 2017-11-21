@@ -1,5 +1,5 @@
 import * as m from "mithril";
-import pages, {getPage} from "../../pages";
+import pages, { getPage } from "../../pages";
 import "./style.scss";
 
 export default class Presentor implements m.ClassComponent<{}> {
@@ -7,7 +7,18 @@ export default class Presentor implements m.ClassComponent<{}> {
     private prevKeyStamp: number;
 
     public view(v: m.CVnode<{}>) {
-        return <div className="component-presentor">{getPage(this.page)}</div>
+        return <div className="component-presentor">
+            {getPage(this.page)}
+            <div className="navigation">
+                <div className="prev" onclick={() => this.prev()}>{"◀"}</div>
+
+                <div className="current">
+                    {this.page} / {pages.length - 1}
+                </div>
+
+                <div className="next" onclick={() => this.next()}>{"▶"}</div>
+            </div>
+        </div>
     }
 
     public oncreate(v: m.CVnodeDOM<{}>) {
@@ -16,23 +27,25 @@ export default class Presentor implements m.ClassComponent<{}> {
             console.log(key)
             if (key.indexOf("right") !== -1) this.next();
             else if (key.indexOf("left") !== -1) this.prev();
-        })
+        });
+
+        // setInterval(() => {
+        //     this.next();
+        // }, 3000);
     }
 
     private next() {
         if (this.throttleKeyPress() === false) return;
-        const prevPage: number = this.page;
         this.page++;
-        if (this.page > pages.length - 1) this.page = pages.length - 1;
-        if (this.page !== prevPage) m.redraw();
+        if (this.page > pages.length - 1) this.page = 0;
+        m.redraw();
     }
 
     private prev() {
         if (this.throttleKeyPress() === false) return;
-        const prevPage: number = this.page;
         this.page--;
-        if (this.page < 0) this.page = 0;
-        if (this.page !== prevPage) m.redraw();
+        if (this.page < 0) this.page = pages.length - 1;
+        m.redraw();
     }
 
     private throttleKeyPress() {

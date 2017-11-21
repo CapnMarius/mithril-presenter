@@ -1,6 +1,6 @@
 import * as m from "mithril";
 import Page from "./components/Page";
-import {AnimationContainer as A} from "./components/Animation";
+import { AnimationContainer as A } from "./components/Animation";
 const imgTS = require("./assets/ts.png");
 const imgJS = require("./assets/js.png");
 
@@ -21,6 +21,7 @@ const pages: IPage[] = [{
                 <h4>TSLint</h4>
                 <h4>WebPack</h4>
                 <h4>Sass</h4>
+                <h4>OSpec</h4>
                 <h4>Mithril</h4>
                 <h4>Store</h4>
             </A>
@@ -38,16 +39,16 @@ const pages: IPage[] = [{
                     <li>Ontwikkeld door Microsoft</li>
                     <li>ESNext naar ES5</li>
                     <li>Interfaces en types</li>
-                    <li>Object Oriented</li>
+                    <li>Object georiënteerd</li>
                     <li>Autocompletion</li>
-                    <li>Errors en warnings</li>
+                    <li>Compile-time errors</li>
                 </A>
             </ul>
 
             <A className="list">
                 <div style={{ textAlign: "center" }}>
                     <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
-                        <span style={{ position: "absolute", bottom: "-30px"}}>TypeScript</span>
+                        <span style={{ position: "absolute", bottom: "-30px" }}>TypeScript</span>
                         <img src={imgTS} />
                     </div>
                     <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
@@ -65,27 +66,15 @@ const pages: IPage[] = [{
         <div>
             <ul>
                 <A className="list">
-                    <li>Readability</li>
-                    <li>Maintainability</li>
-                    <li>Syntactic correctness</li>
-                    <li>Bad practice warnings</li>
-                    <li>Less merge-conflicts</li>
-                    <li>IDE support</li>
+                    <li>Leesbaarheid</li>
+                    <li>Onderhoudbaarheid</li>
+                    <li>Syntactische correctheid</li>
+                    <li>Bad practice waarschuwingen</li>
+                    <li>Minder merge-conflicts</li>
+                    <li>IDE integratie</li>
+                    <li>Autocorrect</li>
                 </A>
             </ul>
-
-            <A className="list">
-                <div style={{ textAlign: "center" }}>
-                    <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
-                        <span style={{ position: "absolute", bottom: "-30px"}}>TypeScript</span>
-                        <img src={imgTS} />
-                    </div>
-                    <div style={{ position: "relative", width: "50%", display: "inline-block" }}>
-                        <span style={{ position: "absolute", bottom: "-30px" }}>JavaScript</span>
-                        <img src={imgJS} />
-                    </div>
-                </div>
-            </A>
         </div>
 }, {
     title: "Yarn",
@@ -96,7 +85,8 @@ const pages: IPage[] = [{
                 <A className="list">
                     <li>Parallel downloaden</li>
                     <li>Locale caching</li>
-                    <li>Betrouwbaar</li>
+                    <li>Geavanceerde dependency tree</li>
+                    <li>Upgrade met versie-controle</li>
                 </A>
             </ul>
 
@@ -115,9 +105,11 @@ const pages: IPage[] = [{
         <ul>
             <A className="list">
                 <li>Één JavaScript bestand</li>
-                <li>Module system</li>
+                <li>Inline assets</li>
+                <li>Minder HTTP requests</li>
+                <li>Modulair systeem</li>
                 <li>Loaders en Plugins</li>
-                <li>Dev server</li>
+                <li>Development server</li>
             </A>
         </ul>
 }, {
@@ -126,12 +118,24 @@ const pages: IPage[] = [{
     content:
         <ul>
             <A className="list">
-                <li>Nesting</li>
-                <li>Imports</li>
+                <li>Geneste styles</li>
+                <li>Modulair systeem</li>
                 <li>Variabelen</li>
-                <li>If - else</li>
-                <li>Functies</li>
-                <li>CSS3</li>
+                <li>If - else statements</li>
+                <li>Functies (Mixins)</li>
+            </A>
+        </ul>
+}, {
+    title: "OSpec",
+    sub: "Noiseless Testing Framework", className: "ospec",
+    content:
+        <ul>
+            <A className="list">
+                <li>Geen configuratie</li>
+                <li>Assertion library</li>
+                <li>Asynchrone tests</li>
+                <li>Geen dependencies</li>
+                <li>Snel</li>
             </A>
         </ul>
 }, {
@@ -140,12 +144,12 @@ const pages: IPage[] = [{
     content:
         <ul>
             <A className="list">
-                <li>Component based</li>
-                <li>Interactive / Reactive</li>
+                <li>Component gebaseerd</li>
+                <li>Interactief / Reactief</li>
                 <li>State management</li>
-                <li>Performance</li>
+                <li>Hoge performance</li>
                 <li>Flexibel</li>
-                <li>JSX</li>
+                <li>JSX syntax</li>
             </A>
         </ul>
 }, {
@@ -170,10 +174,7 @@ export default pages;
 export const getPage = (page: number) => {
     const p: IPage = pages[page];
     return <A className="page" key={page}>
-        <Page
-            title={p.title}
-            sub={p.sub}
-            className={p.className}>
+        <Page title={p.title} sub={p.sub} className={p.className}>
             {p.content}
         </Page>
     </A>;
