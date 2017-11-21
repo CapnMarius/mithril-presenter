@@ -19,10 +19,11 @@ const pages: IPage[] = [{
             <A className="list">
                 <h4>TypeScript</h4>
                 <h4>TSLint</h4>
+                <h4>Yarn</h4>
                 <h4>WebPack</h4>
                 <h4>Sass</h4>
-                <h4>OSpec</h4>
                 <h4>Mithril</h4>
+                <h4>OSpec</h4>
                 <h4>Store</h4>
             </A>
         </div>
@@ -126,6 +127,35 @@ const pages: IPage[] = [{
             </A>
         </ul>
 }, {
+  title: "Mithril",
+  sub: "Modern Virtual DOM library", className: "mithril",
+  content:
+      <ul>
+          <A className="list">
+              <li>Component gebaseerd</li>
+              <li>Interactief / Reactief</li>
+              <li>State management</li>
+              <li>Hoge performance</li>
+              <li>Flexibel</li>
+              <li>JSX syntax</li>
+          </A>
+      </ul>
+}, {
+  title: "Mithril",
+  sub: "Lifecycle methods", className: "mithril",
+  content:
+      <A className="list">
+          <h4>1. oninit(VNode)</h4>
+          <h4>2. view(VNode)</h4>
+          <h4>3. oncreate(VNodeDOM)</h4>
+          <h4>4. onbeforeupdate(VNode, VNodeDOM)</h4>
+          <h4>5. onupdate(VNodeDOM)</h4>
+          <h4>6. onbeforeremove(VNodeDOM)</h4>
+          <h4>7. onremove(VNode)</h4>
+          <br />
+          <h4>Mithril.render()</h4>
+      </A>
+}, {
     title: "OSpec",
     sub: "Noiseless Testing Framework", className: "ospec",
     content:
@@ -139,34 +169,18 @@ const pages: IPage[] = [{
             </A>
         </ul>
 }, {
-    title: "Mithril",
-    sub: "Modern Virtual DOM library", className: "mithril",
-    content:
-        <ul>
-            <A className="list">
-                <li>Component gebaseerd</li>
-                <li>Interactief / Reactief</li>
-                <li>State management</li>
-                <li>Hoge performance</li>
-                <li>Flexibel</li>
-                <li>JSX syntax</li>
-            </A>
-        </ul>
-}, {
-    title: "Mithril",
-    sub: "Lifecycle methods", className: "mithril",
-    content:
-        <A className="list">
-            <h4>1. oninit(VNode)</h4>
-            <h4>2. view(VNode)</h4>
-            <h4>3. oncreate(VNodeDOM)</h4>
-            <h4>4. onbeforeupdate(VNode, VNodeDOM)</h4>
-            <h4>5. onupdate(VNodeDOM)</h4>
-            <h4>6. onbeforeremove(VNodeDOM)</h4>
-            <h4>7. onremove(VNode)</h4>
-            <br />
-            <h4>Mithril.render()</h4>
-        </A>
+  title: "Store",
+  sub: "Cross-browser storage for all", className: "store",
+  content:
+      <ul>
+          <A className="list">
+              <li>Geen configuratie</li>
+              <li>Bestaat sinds 2010</li>
+              <li>Ondersteuning voor (bijna) alle browsers</li>
+              <li>Eenvoudig in gebruik</li>
+              <li>Plugins</li>
+          </A>
+      </ul>
 }];
 
 export default pages;
