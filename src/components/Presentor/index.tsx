@@ -24,7 +24,6 @@ export default class Presentor implements m.ClassComponent<{}> {
     public oncreate(v: m.CVnodeDOM<{}>) {
         window.addEventListener("keyup", (event) => {
             const key: string = event.key.toLowerCase();
-            console.log(key)
             if (key.indexOf("right") !== -1) this.next();
             else if (key.indexOf("left") !== -1) this.prev();
         });

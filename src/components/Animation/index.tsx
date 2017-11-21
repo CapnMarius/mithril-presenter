@@ -68,7 +68,6 @@ export default abstract class Animation {
         } else {
             v.attrs.className += " " + className + " before";
         }
-        console.log(v.attrs.className, className); 
     }
 }
 
